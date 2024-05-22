@@ -1,1 +1,1 @@
-[Firefox](https://addons.mozilla.org/ru/firefox/addon/osunewmaps)
+# [[Firefox](https://addons.mozilla.org/ru/firefox/addon/osunewmaps)]
