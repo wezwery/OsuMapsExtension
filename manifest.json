@@ -1,10 +1,10 @@
 {
 
   "manifest_version": 2,
-  "name": "Osu list of new maps",
-  "version": "1.0",
+  "name": "Osu! New maps",
+  "version": "1.1",
 
-  "description": "Shows a list of new maps for Osu",
+  "description": "List of new maps Osu!",
   "icons": {
     "48": "icon.png"
   },
@@ -15,10 +15,10 @@
   
   "permissions": ["https://osu.ppy.sh/home"],
   
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
-      "id": "wezwery2@gmail.com",
-      "strict_min_version": "45.0"
+      "id": "OsuNewMapsExtension@github.com",
+      "strict_min_version": "60.0"
     }
   },
 
