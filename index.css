@@ -1,0 +1,71 @@
+@font-face { 
+	font-family: 'Torus';
+	font-weight: 'lighter';
+	src: url('TorusLight.ttf') format('truetype');
+}
+@font-face { 
+	font-family: 'Torus';
+	font-weight: 'bold';
+	src: url('TorusSemiBold.otf') format('opentype');
+}
+@font-face { 
+	font-family: 'Torus';
+	font-weight: 'normal';
+	src: url('TorusRegular.otf') format('opentype');
+}
+.BeatmapsPanel{
+	line-height: 1.25;
+	font-size: 16px;
+	color: white;
+}
+.Beatmap{
+	margin: 10px 0px;
+	width: 300px;
+	display: flex;
+	text-decoration: none;
+	transform: translateZ(0);
+}
+.Beatmap_img{
+	width: 70px;
+	height: 60px;
+	border-radius: 5px;
+	position: relative;
+}
+.Beatmap_mode{
+	position: absolute;
+	color: white;
+	bottom: 0;
+	right: 0;
+	font-size: 10px;
+	margin: 2.5px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.Beatmap_meta{
+	margin-left: 5px;
+	color: white;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	font-weight: 400;
+	min-width: 0;
+	padding: 0px 5px;
+}
+.Beatmap_artist{
+	font-size: 12px;
+	flex: 1;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+	overflow: hidden !important;
+}
+.Beatmap_creator{
+	font-size: 11px;
+	margin-top: 2px;
+	flex: 1;
+}
+.Beatmap_title{
+	margin-top: 5px;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+	overflow: hidden !important;
+	font-weight: bold;
+}
