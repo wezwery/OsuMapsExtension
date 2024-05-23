@@ -13,6 +13,39 @@
 	font-weight: 'normal';
 	src: url('TorusRegular.otf') format('opentype');
 }
+.RequireLoginError{
+	position: absolute;
+	text-align: center;
+	font-weight: bold;
+	left: 0; 
+	right: 0;
+	top: 150px;
+	margin-left: auto; 
+	margin-right: auto;
+	width: 300px;
+	color: white;
+}
+.RequireLoginError_GoToSite{
+	position: relative;
+	width: 105px;
+	display: block;
+	height: 25px;
+	color: white;
+	margin-left: 97.5px;
+	margin-top: 15px;
+	text-align: center;
+	border-radius: 2.5px;
+	font-family: Torus;
+	font-weight: normal;
+	background-color: hsl(200, 50%, 45%);
+	border: 0;
+	cursor: pointer;
+	transition: 0.15s;
+}
+.RequireLoginError_GoToSite:Hover{
+	transition: 0.15s;
+	background-color: hsl(200, 100%, 70%);
+}
 .BeatmapsPanel{
 	line-height: 1.25;
 	font-size: 16px;
@@ -30,6 +63,28 @@
 	height: 60px;
 	border-radius: 5px;
 	position: relative;
+}
+.Beatmap_download{
+	text-align: center;
+	width: 20px;
+	display: block;
+	height: 20px;
+	margin: 2.5px;
+	border-radius: 2.5px;
+	background-color: hsl(200, 50%, 45%);
+	border: 0;
+	cursor: pointer;
+	transition: 0.15s;
+}
+.Beatmap_download:Hover{
+	transition: 0.15s;
+	background-color: hsl(200, 100%, 70%);
+}
+.Beatmap_download_icon{
+	margin-top: 25%;
+	content: url("download.webp");
+	width: 10px;
+	height: 10px;
 }
 .Beatmap_mode{
 	position: absolute;
@@ -49,6 +104,7 @@
 	font-weight: 400;
 	min-width: 0;
 	padding: 0px 5px;
+	text-decoration: none;
 }
 .Beatmap_artist{
 	font-size: 12px;
