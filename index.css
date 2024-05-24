@@ -1,31 +1,40 @@
-@font-face { 
+@font-face {
 	font-family: 'Torus';
 	font-weight: 'lighter';
 	src: url('TorusLight.ttf') format('truetype');
 }
-@font-face { 
+
+@font-face {
 	font-family: 'Torus';
 	font-weight: 'bold';
 	src: url('TorusSemiBold.otf') format('opentype');
 }
-@font-face { 
+
+@font-face {
 	font-family: 'Torus';
 	font-weight: 'normal';
 	src: url('TorusRegular.otf') format('opentype');
 }
-.RequireLoginError{
+
+.Parent {
+	display: none;
+	margin: -5px;
+}
+
+.RequireLoginError {
 	position: absolute;
 	text-align: center;
 	font-weight: bold;
-	left: 0; 
+	left: 0;
 	right: 0;
 	top: 150px;
-	margin-left: auto; 
+	margin-left: auto;
 	margin-right: auto;
 	width: 300px;
 	color: white;
 }
-.RequireLoginError_GoToSite{
+
+.RequireLoginError_GoToSite {
 	position: relative;
 	width: 105px;
 	display: block;
@@ -42,29 +51,47 @@
 	cursor: pointer;
 	transition: 0.15s;
 }
-.RequireLoginError_GoToSite:Hover{
+
+.RequireLoginError_GoToSite:Hover {
 	transition: 0.15s;
 	background-color: hsl(200, 100%, 70%);
 }
-.BeatmapsPanel{
+
+.TopMapsPanel {
+	background-color: hsl(255, 10%, 23%);
 	line-height: 1.25;
 	font-size: 16px;
 	color: white;
+	border-radius: 5px;
+	margin-left: 5px;
 }
-.Beatmap{
+
+.NewMapsPanel {
+	background-color: hsl(255, 10%, 23%);
+	line-height: 1.25;
+	font-size: 16px;
+	color: white;
+	border-radius: 5px;
+}
+
+.Beatmap {
 	margin: 10px 0px;
+	margin-left: 5px;
 	width: 300px;
 	display: flex;
 	text-decoration: none;
 	transform: translateZ(0);
 }
-.Beatmap_img{
+
+.Beatmap_img {
 	width: 70px;
 	height: 60px;
 	border-radius: 5px;
 	position: relative;
+	background-color: rgb(255, 255, 255, 0.1);
 }
-.Beatmap_download{
+
+.Beatmap_download {
 	text-align: center;
 	width: 20px;
 	display: block;
@@ -76,17 +103,20 @@
 	cursor: pointer;
 	transition: 0.15s;
 }
-.Beatmap_download:Hover{
+
+.Beatmap_download:Hover {
 	transition: 0.15s;
 	background-color: hsl(200, 100%, 70%);
 }
-.Beatmap_download_icon{
+
+.Beatmap_download_icon {
 	margin-top: 25%;
 	content: url("download.webp");
 	width: 10px;
 	height: 10px;
 }
-.Beatmap_mode{
+
+.Beatmap_mode {
 	position: absolute;
 	color: white;
 	bottom: 0;
@@ -95,7 +125,8 @@
 	margin: 2.5px;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-.Beatmap_meta{
+
+.Beatmap_meta {
 	margin-left: 5px;
 	color: white;
 	display: flex;
@@ -106,20 +137,23 @@
 	padding: 0px 5px;
 	text-decoration: none;
 }
-.Beatmap_artist{
+
+.Beatmap_artist {
+	margin-top: -2px;
 	font-size: 12px;
 	flex: 1;
 	white-space: nowrap !important;
 	text-overflow: ellipsis !important;
 	overflow: hidden !important;
 }
-.Beatmap_creator{
+
+.Beatmap_creator {
 	font-size: 11px;
 	margin-top: 2px;
 	flex: 1;
 }
-.Beatmap_title{
-	margin-top: 5px;
+
+.Beatmap_title {
 	white-space: nowrap !important;
 	text-overflow: ellipsis !important;
 	overflow: hidden !important;
