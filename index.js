@@ -33,10 +33,10 @@ xml.onload = function () {
 		loadNewBeatmaps(xmlDoc);
 		loadTopBeatmaps(xmlDoc);
 
-		document.getElementsByClassName("Parent")[0].style.display = 'flex';
+		document.getElementsByClassName("Parent")[0].style.display = "flex";
 	} catch (e) {
 		console.log(e);
-		document.getElementsByClassName("RequireLoginError")[0].style["display"] = "block";
+		document.getElementsByClassName("RequireLoginError")[0].style.display = "block";
 	}
 }
 xml.open("GET", "https://osu.ppy.sh/", true);

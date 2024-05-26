@@ -75,12 +75,22 @@
 }
 
 .Beatmap {
-	margin: 10px 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	margin-left: 5px;
-	width: 300px;
+	margin-right: 5px;
+	width: 295px;
 	display: flex;
+	border-radius: 5px;
 	text-decoration: none;
 	transform: translateZ(0);
+	background-color: hsl(255, 10%, 26%);
+	transition: 0.15s;
+}
+
+.Beatmap:has(.Beatmap_meta:hover) {
+	transition: 0.15s;
+	background-color: hsl(255, 10%, 29%);
 }
 
 .Beatmap_img {
@@ -104,7 +114,7 @@
 	transition: 0.15s;
 }
 
-.Beatmap_download:Hover {
+.Beatmap_download:hover {
 	transition: 0.15s;
 	background-color: hsl(200, 100%, 70%);
 }
@@ -124,6 +134,7 @@
 	font-size: 10px;
 	margin: 2.5px;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	user-select: none;
 }
 
 .Beatmap_meta {
@@ -145,12 +156,14 @@
 	white-space: nowrap !important;
 	text-overflow: ellipsis !important;
 	overflow: hidden !important;
+	user-select: none;
 }
 
 .Beatmap_creator {
 	font-size: 11px;
 	margin-top: 2px;
 	flex: 1;
+	user-select: none;
 }
 
 .Beatmap_title {
@@ -158,4 +171,5 @@
 	text-overflow: ellipsis !important;
 	overflow: hidden !important;
 	font-weight: bold;
+	user-select: none;
 }

@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Osu! Maps",
+  "name": "Osu! Beatmaps",
   "version": "1.3",
   "description": "List of new and popular Osu! beatmaps.",
   "icons": {
@@ -10,7 +10,7 @@
     "default_popup": "index.html"
   },
   "permissions": [
-    "https://osu.ppy.sh/home"
+    "https://osu.ppy.sh/"
   ],
   "browser_specific_settings": {
     "gecko": {
@@ -21,7 +21,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://osu.ppy.sh/home"
+        "https://osu.ppy.sh/"
       ],
       "js": [
         "index.js",
