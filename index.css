@@ -120,7 +120,6 @@
 }
 
 .Beatmap_download_icon {
-	margin-top: 25%;
 	content: url("download.webp");
 	width: 10px;
 	height: 10px;

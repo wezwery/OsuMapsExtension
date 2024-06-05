@@ -2,7 +2,8 @@
 var xml = new XMLHttpRequest();
 var parser = new DOMParser();
 var urls = ["", "", "", "", "", "", "", "", "", ""];
-var tab;
+var ids = ["", "", "", "", "", "", "", "", "", ""];
+var downloaded = JSON.parse(localStorage.getItem("downloaded")) || [];
 
 document.getElementsByClassName("RequireLoginError_GoToSite")[0].addEventListener("click", () => {
 	browser.tabs.create({
@@ -11,21 +12,33 @@ document.getElementsByClassName("RequireLoginError_GoToSite")[0].addEventListene
 	close();
 });
 
-function executeScript(tabId, changeInfo, tabInfo) {
-	if (tabId != tab.id) return;
-	browser.tabs.executeScript(tab.id, {
-		file: "download.js"
-	});
-	browser.tabs.onUpdated.removeListener(executeScript);
-}
+document.getElementById("DOWNLOAD_ALL_NEW_MAPS").addEventListener("click", () => {
+	for (let index = 0; index < 5; index++) {
+		download(index, 10000);
+	}
+});
+document.getElementById("DOWNLOAD_ALL_TOP_MAPS").addEventListener("click", () => {
+	for (let index = 5; index < 10; index++) {
+		download(index, 10000);
+	}
+});
 
-function download(url) {
-	browser.tabs.onUpdated.addListener(executeScript);
-	tab = browser.tabs.create({
-		url: url,
+function download(index, timeout = 1000) {
+	var tab = browser.tabs.create({
+		url: "https://api.nerinyan.moe/d/" + ids[index],
 		active: false
 	});
-	tab.then((tabInfo) => { tab = tabInfo; });
+	tab.then((taba) => {
+		const id = taba.id;
+		setTimeout(() => {
+			browser.tabs.remove(id);
+		}, timeout);
+	});
+	if (downloaded.includes(ids[index]) == false) {
+		document.getElementsByClassName('Beatmap')[index].children[1].style.opacity = 0.5;
+		downloaded.push(ids[index]);
+		localStorage.setItem("downloaded", JSON.stringify(downloaded));
+	}
 }
 xml.onload = function () {
 	try {
@@ -48,9 +61,13 @@ function loadNewBeatmaps(xmlDoc) {
 	for (var i = 0; i < 5; i++) {
 		beatmapsItems[i].children[1].href = beatmaps[i].href;
 		urls[i] = beatmaps[i].href;
+		ids[i] = beatmaps[i].href.split('/')[beatmaps[i].href.split('/').length - 1];
+		if (downloaded.includes(ids[i])) {
+			beatmapsItems[i].children[1].style.opacity = 0.5;
+		}
 		const _i = i;
 		beatmapsItems[i].children[0].children[0].addEventListener("click", (event) => {
-			download(urls[_i]);
+			download(_i);
 		});
 		beatmapsItems[i].children[0].style.backgroundImage = beatmaps[i].children[0].style.getPropertyValue('--bg');
 		beatmapsItems[i].children[0].srcSet = beatmaps[i].children[0].srcSet;
@@ -79,9 +96,13 @@ function loadTopBeatmaps(xmlDoc) {
 	for (var i = 0; i < 5; i++) {
 		beatmapsItems[i + 5].children[1].href = beatmaps[i].href;
 		urls[i + 5] = beatmaps[i].href;
+		ids[i + 5] = beatmaps[i].href.split('/')[beatmaps[i].href.split('/').length - 1];
+		if (downloaded.includes(ids[i + 5])) {
+			beatmapsItems[i + 5].children[1].style.opacity = 0.5;
+		}
 		const _i = i + 5;
 		beatmapsItems[i + 5].children[0].children[0].addEventListener("click", (event) => {
-			download(urls[_i]);
+			download(_i);
 		});
 		beatmapsItems[i + 5].children[0].style.backgroundImage = beatmaps[i].children[0].style.getPropertyValue('--bg');
 		beatmapsItems[i + 5].children[0].srcSet = beatmaps[i].children[0].srcSet;

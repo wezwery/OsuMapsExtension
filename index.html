@@ -3,7 +3,7 @@
 
 <head></head>
 
-<body style="width: 605px; height: 381px; background: hsl(255,10%,20%); font-family: Torus; font-weight: normal;">
+<body style="width: 605px; height: 386px; background: hsl(255,10%,20%); font-family: Torus; font-weight: normal;">
     <main>
         <div class="RequireLoginError" style="display: none;">
             <div>Require login in!</div>
@@ -11,8 +11,16 @@
         </div>
         <div class="Parent">
             <div class="NewMapsPanel">
-                <div style="text-align: center; padding-top: 5px; padding-bottom: 1px; user-select: none;">
+                <div
+                    style="display: flex; align-items: center; justify-content: center; padding-top: 5px; padding-bottom: 1px; user-select: none;">
                     New Ranked Beatmaps
+                    <button id="DOWNLOAD_ALL_NEW_MAPS" class="Beatmap_download"
+                        style="display: flex; width: 50px; margin-left: 10px;">
+                        <img class="Beatmap_download_icon" style="margin-top: 4px; margin-left: 2.5px;">
+                        <div
+                            style="margin-left: 8px; margin-top: 1px; color: white; font-family: Torus; font-weight: lighter;">
+                            All</div>
+                    </button>
                 </div>
                 <div class="Beatmap">
                     <div class="Beatmap_img">
@@ -81,8 +89,16 @@
                 </div>
             </div>
             <div class="TopMapsPanel">
-                <div style="text-align: center; padding-top: 5px; padding-bottom: 1px; user-select: none;">
+                <div
+                    style="display: flex; align-items: center; justify-content: center; padding-top: 5px; padding-bottom: 1px; user-select: none;">
                     Popular Beatmaps
+                    <button id="DOWNLOAD_ALL_TOP_MAPS" class="Beatmap_download"
+                        style="display: flex; width: 50px; margin-left: 10px;">
+                        <img class="Beatmap_download_icon" style="margin-top: 4px; margin-left: 2.5px;">
+                        <div
+                            style="margin-left: 8px; margin-top: 1px; color: white; font-family: Torus; font-weight: lighter;">
+                            All</div>
+                    </button>
                 </div>
                 <div class="Beatmap">
                     <div class="Beatmap_img">
