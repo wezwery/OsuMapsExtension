@@ -24,8 +24,7 @@
         "https://osu.ppy.sh/"
       ],
       "js": [
-        "index.js",
-        "download.js"
+        "index.js"
       ]
     }
   ]
