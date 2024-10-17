@@ -16,9 +16,100 @@
 	src: url('TorusRegular.otf') format('opentype');
 }
 
-.Parent {
+.Categories {
+	display: flex;
+	width: auto;
+	height: 40px;
+}
+
+.Category-Selector {
+	width: auto;
+	display: block;
+	height: 2px;
+	border-radius: 2px;
+	margin-top: 5px;
+	transition: 0.15s;
+}
+
+.Category-Selector[data-selected="true"] {
+	background-color: hsl(255, 50%, 50%);
+}
+
+.Category-Selector[data-selected="false"] {
+	background-color: transparent;
+}
+
+.Category-Button {
+	margin-left: 10px;
+	margin-right: 10px;
+	font-weight: lighter;
+	user-select: none;
+	cursor: pointer;
+}
+
+.Category-Button:hover .Category-Selector[data-selected="false"] {
+	transition: 0.15s;
+	background-color: hsla(255, 50%, 50%, 50%);
+}
+
+.Main-Category {
 	display: none;
+}
+
+.Packs-Category {
+	display: none;
+}
+
+.Packs {
+	background-color: hsl(255, 10%, 23%);
+	line-height: 1.25;
+	font-size: 16px;
+	color: white;
+	border-radius: 5px;
+	user-select: none;
+	height: 390px;
+	display: flex;
+	flex-direction: column;
+}
+
+.Pack {
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: auto;
+	height: 37.7px;
+	display: flex;
+	border-radius: 5px;
+	text-decoration: none;
+	font-size: 15px;
+	transform: translateZ(0);
+	background-color: hsl(255, 10%, 26%);
+	transition: 0.15s;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+}
+
+.Pack-Meta {
+	height: auto;
+	vertical-align: middle;
+	margin-right: 15px;
+}
+
+.Pack-Name {
+	height: auto;
+	vertical-align: middle;
+	margin-left: 15px;
+}
+
+.Pack:hover {
+	transition: 0.15s;
+	background-color: hsl(255, 10%, 29%);
+}
+
+.Parent {
 	margin: -5px;
+	display: block;
 }
 
 .RequireLoginError {
@@ -27,7 +118,7 @@
 	font-weight: bold;
 	left: 0;
 	right: 0;
-	top: 150px;
+	top: 180px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 300px;

@@ -3,167 +3,223 @@
 
 <head></head>
 
-<body style="width: 605px; height: 386px; background: hsl(255,10%,20%); font-family: Torus; font-weight: normal;">
+<body style="width: 605px; height: 420px; background: hsl(255,10%,20%); font-family: Torus; font-weight: normal;">
     <main>
         <div class="RequireLoginError" style="display: none;">
             <div>Require login in!</div>
             <button class="RequireLoginError_GoToSite">Home page</button>
         </div>
-        <div class="Parent">
-            <div class="NewMapsPanel">
-                <div
-                    style="display: flex; align-items: center; justify-content: center; padding-top: 5px; padding-bottom: 1px; user-select: none;">
-                    New Ranked Beatmaps
-                    <button id="DOWNLOAD_ALL_NEW_MAPS" class="Beatmap_download"
-                        style="display: flex; width: 50px; margin-left: 10px;">
-                        <img class="Beatmap_download_icon" style="margin-top: 4px; margin-left: 2.5px;">
-                        <div
-                            style="margin-left: 8px; margin-top: 1px; color: white; font-family: Torus; font-weight: lighter;">
-                            All</div>
-                    </button>
-                </div>
-                <div class="Beatmap">
-                    <div class="Beatmap_img">
-                        <button class="Beatmap_download">
-                            <img class="Beatmap_download_icon">
-                        </button>
-                        <div class="Beatmap_mode">osu!</div>
-                    </div>
-                    <a class="Beatmap_meta">
-                        <div class="Beatmap_title"></div>
-                        <div class="Beatmap_artist"></div>
-                        <div class="Beatmap_creator"></div>
-                    </a>
-                </div>
-                <div class="Beatmap">
-                    <div class="Beatmap_img">
-                        <button class="Beatmap_download">
-                            <img class="Beatmap_download_icon">
-                        </button>
-                        <div class="Beatmap_mode">osu!</div>
-                    </div>
-                    <a class="Beatmap_meta">
-                        <div class="Beatmap_title"></div>
-                        <div class="Beatmap_artist"></div>
-                        <div class="Beatmap_creator"></div>
-                    </a>
-                </div>
-                <div class="Beatmap">
-                    <div class="Beatmap_img">
-                        <button class="Beatmap_download">
-                            <img class="Beatmap_download_icon">
-                        </button>
-                        <div class="Beatmap_mode">osu!</div>
-                    </div>
-                    <a class="Beatmap_meta">
-                        <div class="Beatmap_title"></div>
-                        <div class="Beatmap_artist"></div>
-                        <div class="Beatmap_creator"></div>
-                    </a>
-                </div>
-                <div class="Beatmap">
-                    <div class="Beatmap_img">
-                        <button class="Beatmap_download">
-                            <img class="Beatmap_download_icon">
-                        </button>
-                        <div class="Beatmap_mode">osu!</div>
-                    </div>
-                    <a class="Beatmap_meta">
-                        <div class="Beatmap_title"></div>
-                        <div class="Beatmap_artist"></div>
-                        <div class="Beatmap_creator"></div>
-                    </a>
-                </div>
-                <div class="Beatmap">
-                    <div class="Beatmap_img">
-                        <button class="Beatmap_download">
-                            <img class="Beatmap_download_icon">
-                        </button>
-                        <div class="Beatmap_mode">osu!</div>
-                    </div>
-                    <a class="Beatmap_meta">
-                        <div class="Beatmap_title"></div>
-                        <div class="Beatmap_artist"></div>
-                        <div class="Beatmap_creator"></div>
-                    </a>
+        <div class="Categories">
+            <div class="Category-Button">
+                main
+                <div class="Category-Selector">
+
                 </div>
             </div>
-            <div class="TopMapsPanel">
-                <div
-                    style="display: flex; align-items: center; justify-content: center; padding-top: 5px; padding-bottom: 1px; user-select: none;">
-                    Popular Beatmaps
-                    <button id="DOWNLOAD_ALL_TOP_MAPS" class="Beatmap_download"
-                        style="display: flex; width: 50px; margin-left: 10px;">
-                        <img class="Beatmap_download_icon" style="margin-top: 4px; margin-left: 2.5px;">
-                        <div
-                            style="margin-left: 8px; margin-top: 1px; color: white; font-family: Torus; font-weight: lighter;">
-                            All</div>
-                    </button>
+            <div class="Category-Button">
+                packs
+                <div class="Category-Selector">
+
                 </div>
-                <div class="Beatmap">
-                    <div class="Beatmap_img">
-                        <button class="Beatmap_download">
-                            <img class="Beatmap_download_icon">
+            </div>
+        </div>
+        <div class="Parent">
+            <div class="Main-Category">
+                <div class="NewMapsPanel">
+                    <div
+                        style="display: flex; align-items: center; justify-content: center; padding-top: 5px; padding-bottom: 1px; user-select: none;">
+                        New Ranked Beatmaps
+                        <button id="DOWNLOAD_ALL_NEW_MAPS" class="Beatmap_download"
+                            style="display: flex; width: 50px; margin-left: 10px;">
+                            <img class="Beatmap_download_icon" style="margin-top: 4px; margin-left: 2.5px;">
+                            <div
+                                style="margin-left: 8px; margin-top: 1px; color: white; font-family: Torus; font-weight: lighter;">
+                                All</div>
                         </button>
-                        <div class="Beatmap_mode">osu!</div>
                     </div>
-                    <a class="Beatmap_meta">
-                        <div class="Beatmap_title"></div>
-                        <div class="Beatmap_artist"></div>
-                        <div class="Beatmap_creator"></div>
-                    </a>
+                    <div class="Beatmap">
+                        <div class="Beatmap_img">
+                            <button class="Beatmap_download">
+                                <img class="Beatmap_download_icon">
+                            </button>
+                            <div class="Beatmap_mode">osu!</div>
+                        </div>
+                        <a class="Beatmap_meta">
+                            <div class="Beatmap_title"></div>
+                            <div class="Beatmap_artist"></div>
+                            <div class="Beatmap_creator"></div>
+                        </a>
+                    </div>
+                    <div class="Beatmap">
+                        <div class="Beatmap_img">
+                            <button class="Beatmap_download">
+                                <img class="Beatmap_download_icon">
+                            </button>
+                            <div class="Beatmap_mode">osu!</div>
+                        </div>
+                        <a class="Beatmap_meta">
+                            <div class="Beatmap_title"></div>
+                            <div class="Beatmap_artist"></div>
+                            <div class="Beatmap_creator"></div>
+                        </a>
+                    </div>
+                    <div class="Beatmap">
+                        <div class="Beatmap_img">
+                            <button class="Beatmap_download">
+                                <img class="Beatmap_download_icon">
+                            </button>
+                            <div class="Beatmap_mode">osu!</div>
+                        </div>
+                        <a class="Beatmap_meta">
+                            <div class="Beatmap_title"></div>
+                            <div class="Beatmap_artist"></div>
+                            <div class="Beatmap_creator"></div>
+                        </a>
+                    </div>
+                    <div class="Beatmap">
+                        <div class="Beatmap_img">
+                            <button class="Beatmap_download">
+                                <img class="Beatmap_download_icon">
+                            </button>
+                            <div class="Beatmap_mode">osu!</div>
+                        </div>
+                        <a class="Beatmap_meta">
+                            <div class="Beatmap_title"></div>
+                            <div class="Beatmap_artist"></div>
+                            <div class="Beatmap_creator"></div>
+                        </a>
+                    </div>
+                    <div class="Beatmap">
+                        <div class="Beatmap_img">
+                            <button class="Beatmap_download">
+                                <img class="Beatmap_download_icon">
+                            </button>
+                            <div class="Beatmap_mode">osu!</div>
+                        </div>
+                        <a class="Beatmap_meta">
+                            <div class="Beatmap_title"></div>
+                            <div class="Beatmap_artist"></div>
+                            <div class="Beatmap_creator"></div>
+                        </a>
+                    </div>
                 </div>
-                <div class="Beatmap">
-                    <div class="Beatmap_img">
-                        <button class="Beatmap_download">
-                            <img class="Beatmap_download_icon">
+                <div class="TopMapsPanel">
+                    <div
+                        style="display: flex; align-items: center; justify-content: center; padding-top: 5px; padding-bottom: 1px; user-select: none;">
+                        Popular Beatmaps
+                        <button id="DOWNLOAD_ALL_TOP_MAPS" class="Beatmap_download"
+                            style="display: flex; width: 50px; margin-left: 10px;">
+                            <img class="Beatmap_download_icon" style="margin-top: 4px; margin-left: 2.5px;">
+                            <div
+                                style="margin-left: 8px; margin-top: 1px; color: white; font-family: Torus; font-weight: lighter;">
+                                All</div>
                         </button>
-                        <div class="Beatmap_mode">osu!</div>
                     </div>
-                    <a class="Beatmap_meta">
-                        <div class="Beatmap_title"></div>
-                        <div class="Beatmap_artist"></div>
-                        <div class="Beatmap_creator"></div>
-                    </a>
+                    <div class="Beatmap">
+                        <div class="Beatmap_img">
+                            <button class="Beatmap_download">
+                                <img class="Beatmap_download_icon">
+                            </button>
+                            <div class="Beatmap_mode">osu!</div>
+                        </div>
+                        <a class="Beatmap_meta">
+                            <div class="Beatmap_title"></div>
+                            <div class="Beatmap_artist"></div>
+                            <div class="Beatmap_creator"></div>
+                        </a>
+                    </div>
+                    <div class="Beatmap">
+                        <div class="Beatmap_img">
+                            <button class="Beatmap_download">
+                                <img class="Beatmap_download_icon">
+                            </button>
+                            <div class="Beatmap_mode">osu!</div>
+                        </div>
+                        <a class="Beatmap_meta">
+                            <div class="Beatmap_title"></div>
+                            <div class="Beatmap_artist"></div>
+                            <div class="Beatmap_creator"></div>
+                        </a>
+                    </div>
+                    <div class="Beatmap">
+                        <div class="Beatmap_img">
+                            <button class="Beatmap_download">
+                                <img class="Beatmap_download_icon">
+                            </button>
+                            <div class="Beatmap_mode">osu!</div>
+                        </div>
+                        <a class="Beatmap_meta">
+                            <div class="Beatmap_title"></div>
+                            <div class="Beatmap_artist"></div>
+                            <div class="Beatmap_creator"></div>
+                        </a>
+                    </div>
+                    <div class="Beatmap">
+                        <div class="Beatmap_img">
+                            <button class="Beatmap_download">
+                                <img class="Beatmap_download_icon">
+                            </button>
+                            <div class="Beatmap_mode">osu!</div>
+                        </div>
+                        <a class="Beatmap_meta">
+                            <div class="Beatmap_title"></div>
+                            <div class="Beatmap_artist"></div>
+                            <div class="Beatmap_creator"></div>
+                        </a>
+                    </div>
+                    <div class="Beatmap">
+                        <div class="Beatmap_img">
+                            <button class="Beatmap_download">
+                                <img class="Beatmap_download_icon">
+                            </button>
+                            <div class="Beatmap_mode">osu!</div>
+                        </div>
+                        <a class="Beatmap_meta">
+                            <div class="Beatmap_title"></div>
+                            <div class="Beatmap_artist"></div>
+                            <div class="Beatmap_creator"></div>
+                        </a>
+                    </div>
                 </div>
-                <div class="Beatmap">
-                    <div class="Beatmap_img">
-                        <button class="Beatmap_download">
-                            <img class="Beatmap_download_icon">
-                        </button>
-                        <div class="Beatmap_mode">osu!</div>
+            </div>
+            <div class="Packs-Category">
+                <div class="Packs">
+                    <div class="Pack">
+                        <div class="Pack-Name">Pack name #9999</div>
+                        <div class="Pack-Meta">0000-00-00 by Nickname</div>
                     </div>
-                    <a class="Beatmap_meta">
-                        <div class="Beatmap_title"></div>
-                        <div class="Beatmap_artist"></div>
-                        <div class="Beatmap_creator"></div>
-                    </a>
-                </div>
-                <div class="Beatmap">
-                    <div class="Beatmap_img">
-                        <button class="Beatmap_download">
-                            <img class="Beatmap_download_icon">
-                        </button>
-                        <div class="Beatmap_mode">osu!</div>
+                    <div class="Pack">
+                        <div class="Pack-Name">Pack name #9999</div>
+                        <div class="Pack-Meta">0000-00-00 by Nickname</div>
                     </div>
-                    <a class="Beatmap_meta">
-                        <div class="Beatmap_title"></div>
-                        <div class="Beatmap_artist"></div>
-                        <div class="Beatmap_creator"></div>
-                    </a>
-                </div>
-                <div class="Beatmap">
-                    <div class="Beatmap_img">
-                        <button class="Beatmap_download">
-                            <img class="Beatmap_download_icon">
-                        </button>
-                        <div class="Beatmap_mode">osu!</div>
+                    <div class="Pack">
+                        <div class="Pack-Name">Pack name #9999</div>
+                        <div class="Pack-Meta">0000-00-00 by Nickname</div>
                     </div>
-                    <a class="Beatmap_meta">
-                        <div class="Beatmap_title"></div>
-                        <div class="Beatmap_artist"></div>
-                        <div class="Beatmap_creator"></div>
-                    </a>
+                    <div class="Pack">
+                        <div class="Pack-Name">Pack name #9999</div>
+                        <div class="Pack-Meta">0000-00-00 by Nickname</div>
+                    </div>
+                    <div class="Pack">
+                        <div class="Pack-Name">Pack name #9999</div>
+                        <div class="Pack-Meta">0000-00-00 by Nickname</div>
+                    </div>
+                    <div class="Pack">
+                        <div class="Pack-Name">Pack name #9999</div>
+                        <div class="Pack-Meta">0000-00-00 by Nickname</div>
+                    </div>
+                    <div class="Pack">
+                        <div class="Pack-Name">Pack name #9999</div>
+                        <div class="Pack-Meta">0000-00-00 by Nickname</div>
+                    </div>
+                    <div class="Pack">
+                        <div class="Pack-Name">Pack name #9999</div>
+                        <div class="Pack-Meta">0000-00-00 by Nickname</div>
+                    </div>
+                    <div class="Pack">
+                        <div class="Pack-Name">Pack name #9999</div>
+                        <div class="Pack-Meta">0000-00-00 by Nickname</div>
+                    </div>
                 </div>
             </div>
         </div>
