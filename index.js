@@ -7,31 +7,31 @@ var packs_downloaded = JSON.parse(localStorage.getItem("packs_downloaded")) || [
 
 var category_selected = -1;
 
-document.getElementsByClassName("RequireLoginError_GoToSite")[0].addEventListener("click", () => {
+document.getElementsByClassName("RequireLoginError_GoToSite")[0].onclick = () => {
 	browser.tabs.create({
 		url: "https://osu.ppy.sh/"
 	});
 	close();
-});
+};
 
-document.getElementById("DOWNLOAD_ALL_NEW_MAPS").addEventListener("click", () => {
+document.getElementById("DOWNLOAD_ALL_NEW_MAPS").onclick = () => {
 	for (let index = 0; index < 5; index++) {
 		download_beatmap(index);
 	}
-});
-document.getElementById("DOWNLOAD_ALL_TOP_MAPS").addEventListener("click", () => {
+};
+document.getElementById("DOWNLOAD_ALL_TOP_MAPS").onclick = () => {
 	for (let index = 5; index < 10; index++) {
 		download_beatmap(index);
 	}
-});
+};
 
 function register_all_categories() {
 	var i = 0;
 	for (const category of document.getElementsByClassName("Category-Button")) {
 		const _i = i;
-		category.addEventListener("click", (event) => {
+		category.onclick = () => {
 			select_category(_i);
-		});
+		};
 		i++;
 	}
 }
@@ -57,7 +57,7 @@ function select_category(index) {
 		i++;
 	}
 
-	category_selected = i;
+	category_selected = index;
 
 	document.getElementsByClassName("RequireLoginError")[0].style.display = "none";
 
@@ -116,10 +116,9 @@ function load_main_category() {
 				beatmapsItems[i].style.opacity = 1;
 			}
 			const _i = i;
-			beatmapsItems[i].children[0].children[0].onclick = null;
-			beatmapsItems[i].children[0].children[0].addEventListener("click", (event) => {
+			beatmapsItems[i].children[0].children[0].onclick = () => {
 				download_beatmap(_i);
-			});
+			};
 			beatmapsItems[i].children[0].style.backgroundImage = beatmaps[i].children[0].style.getPropertyValue('--bg');
 			beatmapsItems[i].children[0].srcSet = beatmaps[i].children[0].srcSet;
 			var mode = beatmaps[i].children[1].children[0].children[0].children[0].className;
@@ -152,10 +151,9 @@ function load_main_category() {
 				beatmapsItems[i + 5].children[1].style.opacity = 0.5;
 			}
 			const _i = i + 5;
-			beatmapsItems[i + 5].children[0].children[0].onclick = null;
-			beatmapsItems[i + 5].children[0].children[0].addEventListener("click", (event) => {
+			beatmapsItems[i + 5].children[0].children[0].onclick = () => {
 				download_beatmap(_i);
-			});
+			};
 			beatmapsItems[i + 5].children[0].style.backgroundImage = beatmaps[i].children[0].style.getPropertyValue('--bg');
 			beatmapsItems[i + 5].children[0].srcSet = beatmaps[i].children[0].srcSet;
 			var mode = beatmaps[i].children[1].children[0].children[0].children[0].className;
@@ -214,10 +212,9 @@ function load_packs_category() {
 			packs_urls[i] = downloadUrl;
 			local_pack.children[0].innerText = name;
 			local_pack.children[1].innerText = date + " " + author;
-			local_pack.onclick = null;
-			local_pack.addEventListener("click", (event) => {
+			local_pack.onclick = () => {
 				download_pack(_i);
-			});
+			};
 			if (packs_downloaded.includes(packs_urls[i])) {
 				local_pack.style.opacity = 0.5;
 			}
