@@ -207,9 +207,8 @@ function load_packs_category() {
 			const online_pack = packs[i];
 			const local_pack = packsItems[i];
 			const name = online_pack.children[0].children[0].innerText;
-			var metaElements = online_pack.children[0].children[1].children;
-			var date = metaElements[0].innerText;
-			var author = metaElements[2].innerText;
+			var date = online_pack.children[0].children[1].children[0].innerText;
+			var author = online_pack.children[0].children[1].children[1].innerText;
 			var datapacktag = online_pack.getAttribute("data-pack-tag");
 			const downloadUrl = convertDirectUrlToHref("https://packs.ppy.sh/" + datapacktag + " - " + name + ".zip");
 			packs_urls[i] = downloadUrl;
