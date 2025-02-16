@@ -45,6 +45,7 @@
 	font-weight: lighter;
 	user-select: none;
 	cursor: pointer;
+	color: white;
 }
 
 .Category-Button:hover .Category-Selector[data-selected="false"] {
