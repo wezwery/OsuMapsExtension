@@ -1,7 +1,11 @@
+const main_category_height = 533;
+const packs_category_height = 420;
+const login_error_height = 420;
 var main_urls = ["", "", "", "", "", "", "", "", "", ""];
 var main_ids = ["", "", "", "", "", "", "", "", "", ""];
 var main_names = ["", "", "", "", "", "", "", "", "", ""];
 var packs_urls = ["", "", "", "", "", "", "", "", ""];
+var daily_challenge = ["", ""];
 var main_downloaded = JSON.parse(localStorage.getItem("downloaded")) || [];
 var packs_downloaded = JSON.parse(localStorage.getItem("packs_downloaded")) || [];
 
@@ -75,6 +79,10 @@ function select_category(index) {
 	}
 }
 
+function set_body_height(height) {
+	document.body.style.setProperty("height", height + "px");
+}
+
 function download_pack(index) {
 	browser.downloads.download({
 		url: packs_urls[index]
@@ -98,12 +106,35 @@ function download_beatmap(index) {
 		localStorage.setItem("downloaded", JSON.stringify(main_downloaded));
 	}
 }
+
+function download_daily_beatmap() {
+	browser.downloads.download({
+		url: "https://api.nerinyan.moe/d/" + daily_challenge[0],
+		filename: daily_challenge[0] + " " + daily_challenge[1] + ".osz"
+	});
+
+	if (main_downloaded.includes(daily_challenge[0]) == false) {
+		document.getElementsByClassName('Beatmap')[10].style.opacity = 0.5;
+		main_downloaded.push(daily_challenge[0]);
+		localStorage.setItem("downloaded", JSON.stringify(main_downloaded));
+	}
+}
+
 function unload_main_category() {
 	document.getElementsByClassName("Main-Category")[0].style.display = "none";
+	document.getElementsByClassName("DailyChallengePanel")[0].style.display = "none";
 }
+
+function show_login_error() {
+	select_category(-1);
+	set_body_height(login_error_height);
+	document.getElementsByClassName("RequireLoginError")[0].style.display = "block";
+	document.getElementsByClassName("Categories")[0].style.display = "none";
+}
+
 function load_main_category() {
 	function loadNewBeatmaps(xmlDoc) {
-		var beatmaps = xmlDoc.getElementsByClassName("user-home__beatmapsets")[0].children;
+		var beatmaps = xmlDoc.getElementsByClassName("user-home__beatmapsets")[1].children;
 		var beatmapsItems = document.getElementsByClassName('Beatmap');
 		for (var i = 0; i < 5; i++) {
 			beatmapsItems[i].children[1].href = beatmaps[i].href;
@@ -141,7 +172,7 @@ function load_main_category() {
 		}
 	}
 	function loadTopBeatmaps(xmlDoc) {
-		var beatmaps = xmlDoc.getElementsByClassName("user-home__beatmapsets")[1].children;
+		var beatmaps = xmlDoc.getElementsByClassName("user-home__beatmapsets")[2].children;
 		var beatmapsItems = document.getElementsByClassName('Beatmap');
 		for (var i = 0; i < 5; i++) {
 			beatmapsItems[i + 5].children[1].href = beatmaps[i].href;
@@ -175,6 +206,38 @@ function load_main_category() {
 			main_names[i + 5] = beatmapsItems[i + 5].children[1].children[0].innerText;
 		}
 	}
+	function loadDailyBeatmap(xmlDoc) {
+		var beatmaps = xmlDoc.getElementsByClassName("user-home__beatmapsets")[0].children;
+		var beatmapsItem = document.getElementsByClassName('Beatmap')[10];
+		beatmapsItem.children[1].href = beatmaps[0].href;
+		main_url = beatmaps[0].href;
+		main_id = beatmaps[0].href.split('/')[beatmaps[0].href.split('/').length - 1];
+		if (main_downloaded.includes(main_id)) {
+			beatmapsItem.children[1].style.opacity = 0.5;
+		}
+		beatmapsItem.children[0].children[0].onclick = () => {
+			download_daily_beatmap();
+		};
+		beatmapsItem.children[0].style.backgroundImage = beatmaps[0].children[0].style.getPropertyValue('--bg');
+		beatmapsItem.children[0].srcSet = beatmaps[0].children[0].srcSet;
+		var mode = beatmaps[0].children[1].children[0].children[0].children[0].className;
+		if (mode.includes("fa-extra-mode-osu")) {
+			beatmapsItem.children[0].children[1].innerText = "osu!";
+		}
+		else if (mode.includes("fa-extra-mode-taiko")) {
+			beatmapsItem.children[0].children[1].innerText = "osu!taiko";
+		}
+		else if (mode.includes("fa-extra-mode-mania")) {
+			beatmapsItem.children[0].children[1].innerText = "osu!mania";
+		}
+		else if (mode.includes("fa-extra-mode-fruits")) {
+			beatmapsItem.children[0].children[1].innerText = "osu!catch";
+		}
+		beatmapsItem.children[1].children[0].innerText = beatmaps[0].children[1].children[0].children[1].innerText.trim();
+		beatmapsItem.children[1].children[1].innerText = beatmaps[0].children[1].children[1].innerText.trim();
+		beatmapsItem.children[1].children[2].innerText = "by " + beatmaps[0].children[1].children[2].children[0].innerText.trim();
+		main_name = beatmapsItem.children[1].children[0].innerText;
+	}
 	var xml = new XMLHttpRequest();
 	var parser = new DOMParser();
 	xml.onload = function () {
@@ -182,11 +245,15 @@ function load_main_category() {
 			var xmlDoc = parser.parseFromString(xml.responseText, "text/html");
 			loadNewBeatmaps(xmlDoc);
 			loadTopBeatmaps(xmlDoc);
+			loadDailyBeatmap(xmlDoc);
 
 			document.getElementsByClassName("Main-Category")[0].style.display = "flex";
+			document.getElementsByClassName("DailyChallengePanel")[0].style.display = "block";
+
+			set_body_height(main_category_height);
 		} catch (e) {
 			console.log(e);
-			document.getElementsByClassName("RequireLoginError")[0].style.display = "block";
+			show_login_error();
 		}
 	}
 	xml.open("GET", "https://osu.ppy.sh/", true);
@@ -231,9 +298,11 @@ function load_packs_category() {
 			loadPacks(xmlDoc);
 
 			document.getElementsByClassName("Packs-Category")[0].style.display = "block";
+
+			set_body_height(packs_category_height);
 		} catch (e) {
 			console.log(e);
-			document.getElementsByClassName("RequireLoginError")[0].style.display = "block";
+			show_login_error();
 		}
 	}
 	xml.open("GET", "https://osu.ppy.sh/beatmaps/packs", true);
