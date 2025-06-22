@@ -4,12 +4,12 @@ const packs_category_height = 420;
 const login_error_height = 420;
 const main_category_new_beatmaps_count = 5;
 const main_category_top_beatmaps_count = 5;
-const main_category_daily_beatmap_count = 1;
 const packs_category_count = 9;
 const main_category = document.getElementsByClassName("Main-Category")[0];
 const main_category_new_beatmaps_panel = document.getElementsByClassName("NewMapsPanel")[0];
 const main_category_top_beatmaps_panel = document.getElementsByClassName("TopMapsPanel")[0];
 const packs_category = document.getElementsByClassName("Packs-Category")[0];
+const packs_panel = packs_category.firstElementChild;
 const daily_challenge_panel = document.getElementsByClassName("DailyChallengePanel")[0];
 const require_login_error = document.getElementsByClassName("RequireLoginError")[0];
 const categories = document.getElementsByClassName("Categories")[0];
@@ -52,12 +52,21 @@ function createBeatmapCard() {
 	return node.firstElementChild;
 }
 
+function createPackCard() {
+	const template = document.getElementById("template-pack-card");
+	const node = template.content.cloneNode(true);
+	return node.firstElementChild;
+}
+
 function createBeatmapsCardsToCategories() {
 	for (let index = 0; index < main_category_new_beatmaps_count; index++)
 		main_category_new_beatmaps_panel.appendChild(createBeatmapCard());
 
 	for (let index = 0; index < main_category_top_beatmaps_count; index++)
 		main_category_top_beatmaps_panel.appendChild(createBeatmapCard());
+
+	for (let index = 0; index < packs_category_count; index++)
+		packs_panel.appendChild(createPackCard());
 
 	var daily_beatmap_card = createBeatmapCard();
 	daily_beatmap_card.style.marginLeft = "auto";
