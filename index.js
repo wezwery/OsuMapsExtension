@@ -2,6 +2,17 @@
 const main_category_height = 533;
 const packs_category_height = 420;
 const login_error_height = 420;
+const main_category_new_beatmaps_count = 5;
+const main_category_top_beatmaps_count = 5;
+const main_category_daily_beatmap_count = 1;
+const packs_category_count = 9;
+const main_category = document.getElementsByClassName("Main-Category")[0];
+const main_category_new_beatmaps_panel = document.getElementsByClassName("NewMapsPanel")[0];
+const main_category_top_beatmaps_panel = document.getElementsByClassName("TopMapsPanel")[0];
+const packs_category = document.getElementsByClassName("Packs-Category")[0];
+const daily_challenge_panel = document.getElementsByClassName("DailyChallengePanel")[0];
+const require_login_error = document.getElementsByClassName("RequireLoginError")[0];
+const categories = document.getElementsByClassName("Categories")[0];
 
 // Variables
 var main_urls = Array(10).fill("");
@@ -33,6 +44,27 @@ function downloadFile(url, filename) {
 	browser.downloads.download({ url, filename });
 	download_list.push(url);
 }
+
+// Elements Builders
+function createBeatmapCard() {
+	const template = document.getElementById("template-beatmap-card");
+	const node = template.content.cloneNode(true);
+	return node.firstElementChild;
+}
+
+function createBeatmapsCardsToCategories() {
+	for (let index = 0; index < main_category_new_beatmaps_count; index++)
+		main_category_new_beatmaps_panel.appendChild(createBeatmapCard());
+
+	for (let index = 0; index < main_category_top_beatmaps_count; index++)
+		main_category_top_beatmaps_panel.appendChild(createBeatmapCard());
+
+	var daily_beatmap_card = createBeatmapCard();
+	daily_beatmap_card.style.marginLeft = "auto";
+	daily_beatmap_card.style.marginRight = "auto";
+	daily_challenge_panel.appendChild(daily_beatmap_card);
+}
+createBeatmapsCardsToCategories();
 
 // Event Handlers
 document.getElementsByClassName("RequireLoginError_GoToSite")[0].onclick = () => {
@@ -98,12 +130,12 @@ function download_daily_beatmap() {
 
 // Category Load/Unload
 function unload_main_category() {
-	document.getElementsByClassName("Main-Category")[0].style.display = "none";
-	document.getElementsByClassName("DailyChallengePanel")[0].style.display = "none";
+	main_category.style.display = "none";
+	daily_challenge_panel.style.display = "none";
 }
 
 function unload_packs_category() {
-	document.getElementsByClassName("Packs-Category")[0].style.display = "none";
+	packs_category.style.display = "none";
 }
 
 function populateBeatmap(beatmapElement, beatmapData, index, isDaily = false) {
@@ -178,8 +210,8 @@ function load_main_category() {
 			loadTopBeatmaps(xmlDoc);
 			loadDailyBeatmap(xmlDoc);
 
-			document.getElementsByClassName("Main-Category")[0].style.display = "flex";
-			document.getElementsByClassName("DailyChallengePanel")[0].style.display = "block";
+			main_category.style.display = "flex";
+			daily_challenge_panel.style.display = "block";
 
 			set_body_height(main_category_height);
 		} catch (e) {
@@ -226,7 +258,7 @@ function load_packs_category() {
 			var xmlDoc = parser.parseFromString(xml.responseText, "text/html");
 			loadPacks(xmlDoc);
 
-			document.getElementsByClassName("Packs-Category")[0].style.display = "block";
+			packs_category.style.display = "block";
 			set_body_height(packs_category_height);
 		} catch (e) {
 			console.log(e);
@@ -240,8 +272,8 @@ function load_packs_category() {
 function show_login_error() {
 	select_category(-1);
 	set_body_height(login_error_height);
-	document.getElementsByClassName("RequireLoginError")[0].style.display = "block";
-	document.getElementsByClassName("Categories")[0].style.display = "none";
+	require_login_error.style.display = "block";
+	categories.style.display = "none";
 }
 
 select_category(0);
