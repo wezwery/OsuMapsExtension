@@ -83,12 +83,12 @@
 	border-radius: 5px;
 	text-decoration: none;
 	font-size: 15px;
-	transform: translateZ(0);
 	background-color: hsl(255, 10%, 26%);
 	transition: 0.15s;
 	justify-content: space-between;
 	align-items: center;
 	cursor: pointer;
+	box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
 }
 
 .Pack-Meta {
@@ -186,6 +186,7 @@
 	display: flex;
 	border-radius: 5px;
 	text-decoration: none;
+	box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
 	transform: translateZ(0);
 	background-color: hsl(255, 10%, 26%);
 	transition: 0.15s;
@@ -201,7 +202,6 @@
 	height: 60px;
 	border-radius: 5px;
 	position: relative;
-	background-color: rgb(255, 255, 255, 0.1);
 	background-size: cover;
 }
 
@@ -216,6 +216,7 @@
 	border: 0;
 	cursor: pointer;
 	transition: 0.15s;
+	box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
 }
 
 .Beatmap_download:hover {
