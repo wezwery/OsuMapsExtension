@@ -48,6 +48,15 @@ document.getElementById("DOWNLOAD_ALL_TOP_MAPS").onclick = () => {
 	for (let index = 5; index < 10; index++) download_beatmap(index);
 };
 
+function createTemplate(templateId) {
+	const template = document.getElementById(templateId);
+	if (!template) {
+		console.error(`Template with id ${templateId} not found`);
+		return null;
+	}
+	return template.content.cloneNode(true);
+}
+
 // Category Management
 function register_all_categories() {
 	Array.from(document.getElementsByClassName("Category-Button")).forEach((category, i) => {
@@ -109,7 +118,7 @@ function unload_packs_category() {
 function populateBeatmap(beatmapElement, beatmapData, index, isDaily = false) {
 	beatmapElement.children[1].href = beatmapData.href;
 	const beatmapId = beatmapData.href.split('/').pop();
-	const beatmapName = beatmapData.children[1].children[0].children[1].innerText.trim();
+	const beatmapName = beatmapData.children[1].children[0].innerText.trim();
 	const beatmapArtist = beatmapData.children[1].children[1].innerText.trim();
 	const beatmapCreator = beatmapData.children[1].children[2].children[0].innerText.trim();
 
@@ -130,43 +139,62 @@ function populateBeatmap(beatmapElement, beatmapData, index, isDaily = false) {
 	beatmapElement.children[0].style.backgroundImage = beatmapData.children[0].style.getPropertyValue('--bg');
 	beatmapElement.children[0].srcSet = beatmapData.children[0].srcSet;
 
-	const modeClass = beatmapData.children[1].children[0].children[0].children[0].className;
-	beatmapElement.children[0].children[1].innerText = getModeText(modeClass);
+	const mode = get_beatmap_mode_class(beatmapData.getElementsByClassName("user-home-beatmapset__playmode-icon")[0]?.children[0]?.className);
+
+	if (!mode)
+		beatmapElement.children[0].children[1].style.opacity = 0.0;
+	else
+		beatmapElement.children[0].children[1].classList.add(mode);
 
 	beatmapElement.children[1].children[0].innerText = beatmapName;
 	beatmapElement.children[1].children[1].innerText = beatmapArtist;
 	beatmapElement.children[1].children[2].innerText = `by ${beatmapCreator}`;
 }
 
-function getModeText(modeClass) {
-	if (modeClass.includes("fa-extra-mode-osu")) return "osu!";
-	if (modeClass.includes("fa-extra-mode-taiko")) return "osu!taiko";
-	if (modeClass.includes("fa-extra-mode-mania")) return "osu!mania";
-	if (modeClass.includes("fa-extra-mode-fruits")) return "osu!catch";
-	return "";
+function get_beatmap_mode_class(modeClass) {
+	if (!modeClass)
+		return null;
+
+	if (modeClass.includes("fa-extra-mode-osu")) return "beatmap_mode_osu";
+	if (modeClass.includes("fa-extra-mode-taiko")) return "beatmap_mode_taiko";
+	if (modeClass.includes("fa-extra-mode-mania")) return "beatmap_mode_mania";
+	if (modeClass.includes("fa-extra-mode-fruits")) return "beatmap_mode_fruits";
+
+	return null;
+}
+
+function removeElementsByClass(className) {
+	const elements = document.getElementsByClassName(className);
+	while (elements.length > 0) {
+		elements[0].parentNode.removeChild(elements[0]);
+	}
 }
 
 function load_main_category() {
 	function loadNewBeatmaps(xmlDoc) {
 		const beatmaps = xmlDoc.getElementsByClassName("user-home__beatmapsets")[1].children;
-		const beatmapsItems = document.getElementsByClassName('Beatmap');
+		const beatmapsParent = document.getElementsByClassName('NewMapsPanel')[0];
 		for (let i = 0; i < 5; i++) {
-			populateBeatmap(beatmapsItems[i], beatmaps[i], i);
+			beatmapsParent.appendChild(createTemplate("beatmap-template"));
+			populateBeatmap(beatmapsParent.lastElementChild, beatmaps[i], i);
 		}
 	}
 
 	function loadTopBeatmaps(xmlDoc) {
 		const beatmaps = xmlDoc.getElementsByClassName("user-home__beatmapsets")[2].children;
-		const beatmapsItems = document.getElementsByClassName('Beatmap');
+		const beatmapsParent = document.getElementsByClassName('TopMapsPanel')[0];
 		for (let i = 0; i < 5; i++) {
-			populateBeatmap(beatmapsItems[i + 5], beatmaps[i], i + 5);
+			beatmapsParent.appendChild(createTemplate("beatmap-template"));
+			populateBeatmap(beatmapsParent.lastElementChild, beatmaps[i], i + 5);
 		}
 	}
 
 	function loadDailyBeatmap(xmlDoc) {
 		const beatmaps = xmlDoc.getElementsByClassName("user-home__beatmapsets")[0].children;
-		const beatmapsItem = document.getElementsByClassName('Beatmap')[10];
-		populateBeatmap(beatmapsItem, beatmaps[0], null, true);
+		const beatmapsParent = document.getElementsByClassName('DailyChallengePanel')[0];
+		beatmapsParent.appendChild(createTemplate("beatmap-template"));
+		beatmapsParent.lastElementChild.classList.add("Beatmap_daily");
+		populateBeatmap(beatmapsParent.lastElementChild, beatmaps[0], null, true);
 	}
 
 	var xml = new XMLHttpRequest();
@@ -174,6 +202,9 @@ function load_main_category() {
 	xml.onload = function () {
 		try {
 			var xmlDoc = parser.parseFromString(xml.responseText, "text/html");
+
+			removeElementsByClass("Beatmap");
+
 			loadNewBeatmaps(xmlDoc);
 			loadTopBeatmaps(xmlDoc);
 			loadDailyBeatmap(xmlDoc);

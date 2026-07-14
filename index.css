@@ -16,6 +16,11 @@
 	src: url('TorusRegular.otf') format('opentype');
 }
 
+@font-face {
+	font-family: 'FontAwesomeExtra';
+	src: url('AwesomeExtra.woff2');
+}
+
 .Categories {
 	display: flex;
 	width: auto;
@@ -95,12 +100,14 @@
 	height: auto;
 	vertical-align: middle;
 	margin-right: 15px;
+	font-family: Torus;
 }
 
 .Pack-Name {
 	height: auto;
 	vertical-align: middle;
 	margin-left: 15px;
+	font-family: Torus;
 }
 
 .Pack:hover {
@@ -191,6 +198,11 @@
 	transition: 0.15s;
 }
 
+.Beatmap_daily {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .Beatmap:has(.Beatmap_meta:hover) {
 	transition: 0.15s;
 	background-color: hsl(255, 10%, 29%);
@@ -229,12 +241,31 @@
 	height: 10px;
 }
 
+.beatmap_mode_osu::before {
+	content: "\e800";
+}
+
+.beatmap_mode_taiko::before {
+	content: "\e803";
+}
+
+.beatmap_mode_mania::before {
+	content: "\e802";
+}
+
+.beatmap_mode_fruits::before {
+	content: "\e801";
+}
+
 .Beatmap_mode {
 	position: absolute;
 	color: white;
 	bottom: 0;
 	right: 0;
-	font-size: 10px;
+	text-rendering: auto;
+	font-family: 'FontAwesomeExtra';
+	font-weight: 400;
+	font-size: 15px;
 	margin: 2.5px;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	user-select: none;
