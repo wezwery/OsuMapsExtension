@@ -165,6 +165,26 @@
 	margin-left: 5px;
 }
 
+.mode_category {
+	font-family: FontAwesomeExtra;
+	margin-left: 3px;
+	color: #5639ac;
+	font-weight: 400;
+	cursor: pointer;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, .75);
+	transition: 0.15s;
+}
+
+.mode_category:hover {
+	transition: 0.15s;
+	color: white;
+}
+
+.mode_category[selected="true"] {
+	transition: 0.15s;
+	color: white;
+}
+
 .NewMapsPanel {
 	background-color: hsl(255, 10%, 23%);
 	line-height: 1.25;
@@ -267,7 +287,7 @@
 	font-weight: 400;
 	font-size: 15px;
 	margin: 2.5px;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, .75);
 	user-select: none;
 }
 

@@ -11,6 +11,7 @@ var packs_urls = Array(9).fill("");
 var daily_challenge = ["", ""];
 var download_list = JSON.parse(localStorage.getItem("downloaded")) || [];
 var category_selected = -1;
+var mode_selected = -1;
 
 // Utility Functions
 function set_body_height(height) {
@@ -63,7 +64,29 @@ function register_all_categories() {
 		category.onclick = () => select_category(i);
 	});
 }
+
+function register_all_mode_categories() {
+	Array.from(document.getElementsByClassName("mode_category")).forEach((category, i) => {
+		category.onclick = () => select_mode_category(i);
+	});
+}
+
 register_all_categories();
+register_all_mode_categories();
+
+function select_mode_category(index) {
+	if (mode_selected === index) return;
+
+	Array.from(document.getElementsByClassName("mode_category")).forEach((category, i) => {
+		category.setAttribute("selected", i === index);
+	});
+
+	mode_selected = index;
+	document.getElementsByClassName("RequireLoginError")[0].style.display = "none";
+
+	if (category_selected == 0)
+		load_main_category();
+}
 
 function select_category(index) {
 	if (category_selected === index) return;
@@ -163,8 +186,8 @@ function get_beatmap_mode_class(modeClass) {
 	return null;
 }
 
-function removeElementsByClass(className) {
-	const elements = document.getElementsByClassName(className);
+function removeElementsByClass(parent, className) {
+	const elements = parent.getElementsByClassName(className);
 	while (elements.length > 0) {
 		elements[0].parentNode.removeChild(elements[0]);
 	}
@@ -181,7 +204,7 @@ function load_main_category() {
 	}
 
 	function loadTopBeatmaps(xmlDoc) {
-		const beatmaps = xmlDoc.getElementsByClassName("user-home__beatmapsets")[2].children;
+		const beatmaps = xmlDoc.getElementsByClassName("js-popular-beatmapsets-panel")[mode_selected].children;
 		const beatmapsParent = document.getElementsByClassName('TopMapsPanel')[0];
 		for (let i = 0; i < 5; i++) {
 			beatmapsParent.appendChild(createTemplate("beatmap-template"));
@@ -203,7 +226,7 @@ function load_main_category() {
 		try {
 			var xmlDoc = parser.parseFromString(xml.responseText, "text/html");
 
-			removeElementsByClass("Beatmap");
+			removeElementsByClass(document, "Beatmap");
 
 			loadNewBeatmaps(xmlDoc);
 			loadTopBeatmaps(xmlDoc);
@@ -275,4 +298,5 @@ function show_login_error() {
 	document.getElementsByClassName("Categories")[0].style.display = "none";
 }
 
+select_mode_category(0);
 select_category(0);
